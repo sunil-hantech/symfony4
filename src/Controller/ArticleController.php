@@ -19,6 +19,18 @@ class ArticleController extends AbstractController
      */
     public function show($slug)
     {
-        return new Response("future page to show {$slug}");
+        $comments=[
+            'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        'Omnis ducimus quae odit maxime nemo quo aperiam aut',
+        'accusantium amet dolore ab et molestiae alias tempore harum, distinctio fugit cupiditate ipsa!'
+    ]; 
+
+
+    
+
+        return $this->render('article/show.html.twig',[
+            'title'=>ucwords(str_replace("-"," ",$slug)),
+            'comments'=>$comments
+        ]);
     }
 }
