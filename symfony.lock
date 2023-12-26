@@ -11,11 +11,17 @@
             "config/routes/annotations.yaml"
         ]
     },
+    "doctrine/doctrine-bundle": {
+        "version": "2.7.2"
+    },
+    "doctrine/doctrine-migrations-bundle": {
+        "version": "2.2.3"
+    },
     "knplabs/knp-markdown-bundle": {
         "version": "1.9.0"
     },
     "nexylan/slack-bundle": {
-        "version": "v2.2.0"
+        "version": "v2.1.0"
     },
     "php-http/discovery": {
         "version": "1.19",
@@ -95,6 +101,15 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/maker-bundle": {
+        "version": "1.39",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/monolog-bundle": {
         "version": "3.8",

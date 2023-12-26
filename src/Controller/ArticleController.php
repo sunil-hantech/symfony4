@@ -3,7 +3,7 @@
 namespace  App\Controller;
 
 use App\Service\MarkdownHelper;
-use App\Service\MessageGenerator;
+use App\Service\SlackClient;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,15 +30,20 @@ class ArticleController extends AbstractController
      * @Route("/news/{slug}",name="article_show")
      */
     // public function show($slug,Environment $twigEnvironment)
-    public function show($slug,MarkdownHelper $markdownHelper,MessageGenerator $mg)
+    public function show($slug,MarkdownHelper $markdownHelper,SlackClient $slack)
     {
+
+        if ($slug === 'SlackMessage') {
+            $slack->sendMessage('Sunil', 'Hey there!,this is slack service2');
+        }
+
         $comments = [
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
             'Omnis ducimus quae odit maxime nemo quo aperiam aut',
             'accusantium amet dolore ab et molestiae alias tempore harum, distinctio fugit cupiditate ipsa!'
         ];
 
-        dump($this->isDebug);die;
+        // dump($this->isDebug);die;
 
         $articleContent = <<<wtf
 Spicy **jalapeno bacon** ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,lorem proident [beef ribs](https://baconipsum.com/) aute enim veniam ut cillum pork chuck picanha. Dolore reprehenderit labore minim pork belly spare ribs cupim short loin in. Elit exercitation eiusmod dolore cow **turkey** shank eu pork belly meatball non cupim.
@@ -52,7 +57,6 @@ wtf;
 
 $articleContent = $markdownHelper->parse($articleContent);
 
-$message=$mg->getHappyMessage();
         // echo $message;
 
 
