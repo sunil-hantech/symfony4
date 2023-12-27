@@ -31,7 +31,8 @@ class ArticleController extends AbstractController
      */
     // public function show($slug,Environment $twigEnvironment)
     public function show($slug,MarkdownHelper $markdownHelper,SlackClient $slack)
-    {
+    {   
+
 
         if ($slug === 'SlackMessage') {
             $slack->sendMessage('Sunil', 'Hey there!,this is slack service2');
