@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-use PDO;
+
+use Doctrine\DBAL\DriverManager;
+
 class ArticleAdminController extends AbstractController
 {
      /**
@@ -40,6 +42,22 @@ EOF
         }
 
 // print_r(PDO::getAvailableDrivers());
+
+$connectionParams = [
+    'dbname' => 'the_spacebar',
+    'user' => 'root',
+    'password' => '',
+    'host' => 'localhost',
+    'driver' => 'pdo_mysql', // Adjust based on your database type
+];
+
+// Create a Doctrine DBAL connection
+$connection = DriverManager::getConnection($connectionParams);
+
+// Now you can perform queries using Doctrine DBAL
+$table = 'Article';
+$queryBuilder = $connection->createQueryBuilder();
+$queryBuilder->select('content')->from($table);
 
         $em->persist($article);
         $em->flush();
