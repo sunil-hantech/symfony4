@@ -18,7 +18,10 @@ class ArticleAdminController extends AbstractController
     public function new(EntityManagerInterface $em)
     {
         $article = new Article();
-        $article->setTitle('Why Asteroids Taste Like Bacon')
+        $article->setAuthor('Sunil')
+        ->setImageFilename('asteroid.jpeg')
+        ->setHeartCount(rand(5, 100))
+        ->setTitle('Why Asteroids Taste Like Bacon')
         ->setSlug('why-asteroids-taste-like-bacon-'.rand(100, 999))
         ->setContent(<<<EOF
 Spicy **jalapeno bacon** ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,

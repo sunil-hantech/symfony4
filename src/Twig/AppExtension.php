@@ -3,16 +3,25 @@
 namespace App\Twig;
 
 use App\Service\MarkdownHelper;
+use Psr\Container\ContainerInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-class AppExtension extends AbstractExtension
+
+class AppExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
-    private $markdownHelper;
-    public function __construct(MarkdownHelper $markdownHelper)
+    // private $markdownHelper;
+    private $container;
+    // public function __construct(MarkdownHelper $markdownHelper)
+    // {
+    //     $this->markdownHelper = $markdownHelper;
+    // }
+
+    public function __construct(ContainerInterface $container)
     {
-        $this->markdownHelper = $markdownHelper;
+        $this->container = $container;
     }
 
     public function getFilters(): array
@@ -21,14 +30,22 @@ class AppExtension extends AbstractExtension
             // If your filter generates SAFE HTML, you should add a third
             // parameter: ['is_safe' => ['html']]
             // Reference: https://twig.symfony.com/doc/3.x/advanced.html#automatic-escaping
-            new TwigFilter('cached_markdown',  [$this, 'processMarkdown'], ['is_safe' => ['html']]),
+            new TwigFilter('cached_markdown',  [AppRuntime::class, 'processMarkdown'], ['is_safe' => ['html']]),
         ];
     }
 
-   
+
 
     public function processMarkdown($value)
     {
-        return $this->markdownHelper->parse($value);
+        $this->container
+            ->get(MarkdownHelper::class)
+            ->parse($value);
+    }
+    public static function getSubscribedServices()
+    {
+        return [
+            MarkdownHelper::class,
+        ];
     }
 }

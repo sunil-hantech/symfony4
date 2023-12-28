@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^2.2",
         "doctrine/orm": "^2.5",
         "knplabs/knp-markdown-bundle": "^1.9",
+        "knplabs/knp-time-bundle": "^1.15",
         "nexylan/slack-bundle": "2.1.0",
         "php-http/guzzle6-adapter": "1.1.1",
         "sensio/framework-extra-bundle": "^5.5",

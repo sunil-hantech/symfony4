@@ -20,6 +20,9 @@
     "knplabs/knp-markdown-bundle": {
         "version": "1.9.0"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v1.15.0"
+    },
     "nexylan/slack-bundle": {
         "version": "v2.1.0"
     },
@@ -139,6 +142,12 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/translation": {
+        "version": "4.4",
+        "recipe": {
+            "version": "3.3"
+        }
     },
     "symfony/twig-bundle": {
         "version": "4.4",
