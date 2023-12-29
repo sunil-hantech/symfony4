@@ -33,6 +33,11 @@ class ArticleController extends AbstractController
         // $articles=$repository->findBy([],['publishedAt'=>'DESC']);
          $articles=$repository->findAllPublishedOrderedByNewest();
 
+        //  echo "<pre>";
+        //  print_r($articles);
+        //  echo "</pre>";
+        //  die();
+
         return $this->render("article/homepage.html.twig", [
             'articles' => $articles,
         ]);

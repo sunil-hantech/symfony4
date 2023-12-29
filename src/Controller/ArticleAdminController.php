@@ -45,23 +45,6 @@ EOF
             $article->setPublishedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
         }
 
-// print_r(PDO::getAvailableDrivers());
-
-$connectionParams = [
-    'dbname' => 'the_spacebar',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost',
-    'driver' => 'pdo_mysql', // Adjust based on your database type
-];
-
-// Create a Doctrine DBAL connection
-$connection = DriverManager::getConnection($connectionParams);
-
-// Now you can perform queries using Doctrine DBAL
-$table = 'Article';
-$queryBuilder = $connection->createQueryBuilder();
-$queryBuilder->select('content')->from($table);
 
         $em->persist($article);
         $em->flush();
